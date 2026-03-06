@@ -2,4 +2,4 @@ User-agent: *
 Disallow: /wp-admin/
 Allow: /wp-admin/admin-ajax.php
 
-Sitemap: https://marcgenesis.github.io/derniereronde/wp-sitemap.xml
+Sitemap: https://derniereronde.com/wp-sitemap.xml
