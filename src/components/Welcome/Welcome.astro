@@ -1,0 +1,31 @@
+---
+import en from "./en.json"
+import fr from "./fr.json"
+const language = Astro.currentLocale == "fr" ? fr : en
+
+---
+<style>
+    #welcome {
+        background-color: var(--color-dark-secondary);
+        border: 1px solid var(--text-color-secondary);
+        border-left: 0;
+        border-right: 0;
+        margin-bottom: 40px;
+        padding: 2em 0;
+    }
+</style>
+<div id="welcome">
+    <div class="inner-content container-center flex flex-gap-20 flex-column">
+        <div class="flex-grow flex-align-center">
+            <img src="/profile.jpg" />
+        </div>
+        <div class="flex-grow">
+            <p>{language.welcomeMessage1}</p>
+            <p>{language.welcomeMessage2}</p>
+            <p>{language.welcomeMessage3}</p>
+            <p>{language.welcomeMessage4}</p>
+            <p><i>Marc-André Larivière</i></p>
+        </div>
+    </div>
+</div>
+

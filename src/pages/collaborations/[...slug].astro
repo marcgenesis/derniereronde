@@ -1,0 +1,23 @@
+---
+import { getCollection, render } from 'astro:content';
+import Collaborations from '../../components/Collaborations/Collaborations.astro';
+import MainLayout from '../../layouts/Main/MainLayout.astro';
+
+export async function getStaticPaths() {
+  const collabs = await getCollection('collaborations');
+  return collabs.map(collab => ({
+    params: { slug: collab.id }, props: { collab },
+  }));
+}
+
+const { collab } = Astro.props;
+const { slug } = Astro.params;
+const { Content } = await render(collab);
+---
+
+<MainLayout menuMode="static" pageTitle={"Collaborations " + collab.data.clientName}>
+    <Collaborations frontmatter={collab.data}>
+        <Content />
+    </Collaborations>
+</MainLayout>
+

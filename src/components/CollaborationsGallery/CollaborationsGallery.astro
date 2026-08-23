@@ -1,0 +1,60 @@
+---
+import en from "./en.json"
+import fr from "./fr.json"
+const language = Astro.currentLocale == "fr" ? fr : en
+
+
+import { getCollection, render } from 'astro:content';
+
+const collabs = await getCollection('collaborations');
+collabs.sort((a, b) => parseFloat(b.id) - parseFloat(a.id));
+---
+<style>
+    .client {
+        background-color: rgba(10, 10, 10, 0.6);
+        color: white;
+        font-family: "Cabin", sans-serif;
+        font-size: 1.2em;
+        justify-content: center;
+        position: absolute;
+        min-width: 100%;
+        min-height: 100%;
+        top: 0;
+        left: 0;
+        text-align: center;
+        text-transform: uppercase;
+    }
+
+    .client:hover {
+        text-decoration: underline;
+    }
+
+    .client:hover {
+        background-color: rgba(10, 10, 10, 0.25);
+    }
+
+    #collaborations-gallery img, #collaborations-gallery .client {
+        border-radius: 8px;
+    }
+
+    #collaborations-gallery > * {
+        flex-grow: 1;
+        flex-shrink: 1;
+        position: relative;
+        max-width: 100%;
+        width: 40%;
+    }
+
+    @media screen and (min-width: 768px) {
+    #collaborations-gallery > * {
+        width: 30%;
+    }
+</style>
+<div id="portfolio" class="inner-content container-center">
+    <h2 class="text-align-center">{language.pastCollab}</h2>
+    <div id="collaborations-gallery" class="flex flex-wrap flex-gap-20 flex-center">
+        {collabs.map((collab) => {
+            return <a href={Astro.url + "collaborations/" + collab.id}><img width="100%" src={"collaborations/" + collab.id + ".jpg"} alt="" /><div class="client flex flex-column">{collab.data.clientName}</div></a>
+        })}
+    </div>
+</div>

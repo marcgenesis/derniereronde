@@ -1,0 +1,42 @@
+---
+import en from "./en.json"
+import fr from "./fr.json"
+const language = Astro.currentLocale == "fr" ? fr : en
+
+---
+<style>
+    #why-us {
+        margin: 100px auto;
+    }
+
+    #tagline {
+
+        font-family: "Cabin", sans-serif;
+        font-size: 2em;
+        flex-grow: 0;
+        min-width: 40%;
+        height: 100%;
+        text-align: center;
+    }
+
+    #why-text {
+        border-image: linear-gradient(to bottom, rgb(255, 255, 255, 0) 10%, rgb(255, 255, 255, 1) 40%, rgb(255, 255, 255, 1) 50%, rgb(255, 255, 255, 1) 60%, rgb(255, 255, 255, 0) 90%) 1;
+        border-width: 3px;
+        border-style: solid;
+        border-top: 0;
+        border-right: 0;
+        border-bottom: 0;
+        padding-left: 20px;
+        margin-left: 20px;
+    }
+</style>
+<div id="why-us" class="inner-content container-center flex flex-center">
+    <div id="tagline" class="flex-align-center">
+        {language.tagline}
+    </div>
+    <div id="why-text">
+        <h3>{language.title}</h3>
+        <p>{language.why1}</p>
+        <p>{language.why2}</p>
+    </div>
+</div>
