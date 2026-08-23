@@ -12,7 +12,6 @@ export default defineConfig({
       fallback: {
           en: "fr"
       }
-},
-
+  },
   integrations: [mdx()]
 });
