@@ -1,0 +1,111 @@
+---
+
+import { getRelativeLocaleUrl } from "astro:i18n";
+import en from "./en.json"
+import fr from "./fr.json"
+const language = Astro.currentLocale == "fr" ? fr : en
+
+
+const homepageLocale = Astro.currentLocale == "fr" ? "": "en";
+
+const currentPath = Astro.url.pathname.replace("/en", "");
+
+
+const languageSwitchURL = Astro.currentLocale == "fr"
+    ? Astro.url.origin + "/en" + currentPath
+    : Astro.url.origin + currentPath;
+
+const languageSwitchText = Astro.currentLocale == "fr" ? "English" : "Français";
+
+const { menuMode } = Astro.props;
+
+---
+<style>
+    header {
+        background-color: var(--color-dark-secondary);
+        border: 0px;
+        border-bottom: 1px;
+        border-color: var(--text-color-secondary);
+        border-style: solid;
+        display: none;
+        font-family: "Cabin", sans-serif;
+        position: fixed;
+        width: 100%;
+        z-index: 99;
+    }
+
+    header .inner-content {
+        padding: 0 20px;
+    }
+
+    header a {
+        color: var(--text-color-secondary);
+        text-decoration: none;
+    }
+
+    header a:hover {
+        text-decoration: underline;
+    }
+
+    #header-logo {
+        width: 80px;
+    }
+
+    #primary-menu {
+        text-transform: uppercase;
+    }
+
+    #header-padding {
+        height: 0px;
+    }
+
+    @media screen and (min-width: 768px) {
+        #header-logo {
+            width: 120px;
+        }
+
+        #header-padding {
+            height: 0px;
+        }
+    }
+    
+</style>
+
+<header>
+    <div class="inner-content container-center flex">
+        <div id="header-logo" class="flex-shrink">
+            <a href={Astro.url.origin + "/" + homepageLocale}><img src="/logo.png" /></a>
+        </div>
+        <div class="flex-grow flex-align-center">
+            <div id="primary-menu" class="flex flex-end flex-gap-20">
+                <a href={Astro.url.origin + "/" + homepageLocale + "/#portfolio"}>{language.portfolio}</a>
+                <a href={Astro.url.origin + "/" + homepageLocale + "/#quote"}>{language.quote}</a>
+                <a href={languageSwitchURL}>{languageSwitchText}</a>
+            </div>
+            
+        </div>
+    </div>
+</header>
+<div id="header-padding" />
+
+<script define:vars={{menuMode}}>
+    let header = document.getElementsByTagName("header")[0];
+
+    function scrolling() {
+        if (window.scrollY == 0) {
+            header.style.display = "none";
+        } else {
+            header.style.display = "block";
+        }
+
+    }
+
+    if (menuMode == "static") {
+        header.style.display = "block";
+        header.style.position = "relative";
+    }
+    else
+    {
+        window.addEventListener("scroll", scrolling);
+    }
+</script>

@@ -1,0 +1,270 @@
+---
+import en from "./en.json"
+import fr from "./fr.json"
+const language = Astro.currentLocale == "fr" ? fr : en
+---
+<style>
+    #quote {
+        background-color: var(--color-dark-secondary);
+        border-radius: 8px;
+        border: 1px solid white;
+        margin-top: 20px;
+        margin-bottom: 20px;
+        padding: 32px;
+        max-width: 600px;
+    }
+
+    #quote h3 {
+        margin-top: 60px;
+        text-align: center;
+        text-decoration: underline;
+    }
+
+    form * {
+        flex-direction: column;
+    }
+
+    fieldset {
+        border: 0px;
+        margin-bottom: 20px;
+        padding: 0px;
+    }
+
+
+    label {
+        display: block;
+        margin-bottom: 6px;
+    }
+
+    input {
+        background-color: var(--color-dark-primary);
+        border: 1px solid white;
+        color: var(--color-light-primary);
+        width: 100%;
+    }
+
+    select {
+        width: 100%;
+    }
+
+    #cinematography-service input, #photography-service input, #game-gift input {
+        width: 24px;
+    }
+
+    #cinematography-service label, #photography-service label, #game-gift label {
+        display: inline;
+        margin-right: 16px;
+        width: 40px;
+    }
+
+    @media screen and (min-width: 768px) {
+        form * {
+            flex-direction: row;
+        }
+    }
+
+</style>
+
+<script>
+import { nonnegative } from "astro:schema";
+
+    let cinematographyDetails = document.getElementById("cinematography-service-details");
+    let cinematographyServiceYes = document.getElementById("cinematography-service-yes");
+    let cinematographyServiceNo = document.getElementById("cinematography-service-no");
+
+    if (cinematographyDetails)
+        cinematographyDetails.style.display = "none";
+
+    function cinematographyDetailsToggle(show: boolean) {
+        if (cinematographyDetails)
+            show ? cinematographyDetails.style.display = "block" : cinematographyDetails.style.display = "none";
+    }
+
+    cinematographyServiceYes?.addEventListener("click", () => cinematographyDetailsToggle(true));
+    cinematographyServiceNo?.addEventListener("click", () => cinematographyDetailsToggle(false));
+    
+    
+
+    let photographyDetails = document.getElementById("photography-service-details");
+    let photographyServiceYes = document.getElementById("photography-service-yes");
+    let photographyServiceNo = document.getElementById("photography-service-no");
+
+    if (photographyDetails)
+        photographyDetails.style.display = "none";
+
+    function photographyDetailsToggle(show: boolean) {
+        if (photographyDetails)
+            show ? photographyDetails.style.display = "block" : photographyDetails.style.display = "none";
+    }
+
+    photographyServiceYes?.addEventListener("click", () => photographyDetailsToggle(true));
+    photographyServiceNo?.addEventListener("click", () => photographyDetailsToggle(false));
+
+    
+    
+    let foundUs = document.getElementById("found-us") as HTMLOptionElement;
+    let foundUsSection = document.getElementById("found-us-specify-section");
+    let foundUsSpecify = document.getElementById("found-us-specify") as HTMLInputElement;
+    function foundUsValueChanged() {
+        if (foundUsSection)
+        {
+            if (foundUs && (foundUs.value == "Other" || foundUs.value == "Reference" || foundUs.value == "SocialMedia"))
+            {
+                foundUsSection.style.display = "block";
+            }
+            else
+            {
+                foundUsSection.style.display = "none";
+                if (foundUsSpecify)
+                    foundUsSpecify.value = "";
+            }
+        }
+
+    }
+    foundUs?.addEventListener("change", foundUsValueChanged);
+    if (foundUsSection)
+        foundUsSection.style.display = "none";
+
+    
+    let giftThankYou = document.getElementById("thank-you");
+    let giftYes = document.getElementById("game-gift-yes");
+    let giftNo = document.getElementById("game-gift-no");
+
+    if (giftThankYou)
+        giftThankYou.style.display = "none";
+
+    function giftThankYouToggle(show: boolean) {
+        if (giftThankYou)
+            show ? giftThankYou.style.display = "block" : giftThankYou.style.display = "none";
+    }
+
+    giftYes?.addEventListener("click", () => giftThankYouToggle(true));
+    giftNo?.addEventListener("click", () => giftThankYouToggle(false));
+
+
+    
+    
+    
+
+</script>
+
+<div id="quote" class="container-center">
+    <h2 class="text-align-center">{language.title}</h2>
+    <div style="max-width: 95%;" class="container-center">
+        <form action="https://formspree.io/f/xppaoayp" method="POST">
+
+
+            <h3>{language.informationTitle}</h3>
+            <p><label for="client-first-name">{language.firstName} {language.required}</label><input id="client-first-name" name="Client First Name" type="text" required /></p>
+            <p><label for="client-last-name">{language.lastName} {language.required}</label><input id="client-last-name" name="Client Last Name" type="text" required /></p>
+            <p><label for="client-email">{language.email} {language.required}</label><input id="client-email" name="Client Email" type="email" required /></p>
+
+
+            <h3>{language.gameInformation}</h3>
+            <p>
+                <label for="game-info-rules-pages">{language.rulesLength}</label>
+                <select id="game-info-rules-pages" name="Rulebook Length">
+                    <option value="1-10">{language.rules1to10}</option>
+                    <option value="11-20">{language.rules11to20}</option>
+                    <option value="21+">{language.rules20plus}</option>
+                </select>
+            </p>
+            <p>
+                <label for="game-info-length-minutes">{language.playingTime} {language.required}<br /><span style="color:var(--link-color); font-size: 0.9em;">{language.playingTimeInMinutes}</span></label>
+                <input type="text" inputmode="numeric" pattern="\d*" id="game-info-length-minutes" name="Playing time in minutes" value="60" required />
+            </p>
+            <p>
+                <label for="game-info-complexity">{language.complexity}</label>
+                <select id="game-info-complexity" name="Complexity">
+                    <option value="Low">{language.complexityLow}</option>
+                    <option value="Medium">{language.complexityMedium}</option>
+                    <option value="High">{language.complexityHigh}</option>
+                </select>
+            </p>
+            <p>
+                <label for="game-info-quantity-components">{language.componentAmount}</label>
+                <select id="game-info-quantity-components" name="Component amount">
+                    <option value="Small">{language.componentAmountSmall}</option>
+                    <option value="Moderate">{language.componentAmountModerate}</option>
+                    <option value="Large">{language.componentAmountLarge}</option>
+                </select>
+            </p>
+
+
+            <h3>{language.cinematography}</h3>
+            <p>
+                <fieldset id="cinematography-service">
+                    <label>{language.videoService} {language.required}</label><br />
+                    <input type="radio" name="Cinematography Service" id="cinematography-service-yes" value="Yes" required><label for="cinematography-service-yes">{language.yes}</label>
+                    <input type="radio" name="Cinematography Service" id="cinematography-service-no" value="No" required><label for="cinematography-service-no">{language.no}</label>
+                </fieldset>
+            </p>
+            <fieldset id="cinematography-service-details">
+                <p>
+                    <label for="cinematography-video-length">{language.videoLength}</label>
+                    <input style="width: 20%;" type="text" inputmode="numeric" pattern="\d*" id="cinematography-video-length-minutes" name="Video length minutes" value="1" /><label for="cinematography-video-length-minutes" style="display: inline; margin-left: 8px;">{language.videoLengthMinutes}</label>
+                    <input style="width: 20%; margin-left: 16px;" type="text" inputmode="numeric" pattern="\d*" id="cinematography-video-length-seconds" name="Video length seconds" value="1" /><label for="cinematography-video-length-seconds" style="display: inline; margin-left: 8px;">{language.videoLengthSeconds}</label>
+                </p>
+                <p>
+                    <label for="cinematography-video-formats">{language.videoFormats}</label>
+                    <label style="display: inline;" for="cinematography-landscape">{language.landscape}</label><input style="max-width: 10%;" id="cinematography-landscape" name="Cinematography landscape format" type="checkbox" />
+                    <label style="display: inline;" for="cinematography-portrait">{language.portrait}</label><input style="max-width: 10%;" id="cinematography-portrait" name="Cinematography portrait format" type="checkbox" />
+                </p>
+            </fieldset>
+
+
+            <h3>{language.photography}</h3>
+            <p>
+                <fieldset id="photography-service">
+                    <label>{language.photographyService} {language.required}</label><br />
+                    <input type="radio" name="Photography Service" id="photography-service-yes" value="Yes" required><label for="photography-service-yes">{language.yes}</label>
+                    <input type="radio" name="Photography Service" id="photography-service-no" value="No" required><label for="photography-service-no">{language.no}</label>
+                </fieldset>
+            </p>
+            <fieldset id="photography-service-details">
+                <p>
+                    <label for="picture-amount">{language.pictureAmount}</label>
+                    <input style="width: 20%;" type="text" inputmode="numeric" pattern="\d*" id="picture-amount" name="Picture amount" value="5" />
+                </p>
+                <p>
+                    <label for="photography-video-formats">{language.photoFormats}</label>
+                    <label style="display: inline;" for="photography-landscape">{language.landscape}</label><input style="max-width: 10%;" id="photography-landscape" name="Photography landscape format" type="checkbox" />
+                    <label style="display: inline;" for="photography-portrait">{language.portrait}</label><input style="max-width: 10%;" id="photography-portrait" name="Photography portrait format" type="checkbox" />
+                </p>
+            </fieldset>
+
+            <h3>{language.otherTitle}</h3>
+            <p>
+                <fieldset id="game-gift">
+                    <label>{language.gift}</label><br />
+                    <input type="radio" name="Game as a gift" id="game-gift-yes" value="Yes" required><label for="game-gift-yes">{language.yes}</label>
+                    <input type="radio" name="Game as a gift" id="game-gift-no" value="No" required><label for="game-gift-no">{language.no}</label>
+                    <div id="thank-you">{language.thanks}</div>
+                    
+                </fieldset>
+            </p>
+            <p>
+                <label for="found-us">{language.foundUs}</label>
+                <select id="found-us" name="How did you hear from us?">
+                    <option value=""></option>
+                    <option value="Client">{language.client}</option>
+                    <option value="Reference">{language.reference}</option>
+                    <option value="SocialMedia">{language.socialMedia}</option>
+                    <option value="WebSearch">{language.webSearch}</option>
+                    <option value="Other">{language.other}</option>
+                </select>
+            </p>
+            <p id="found-us-specify-section">
+                <label style="display: inline;" for="found-us-specify">{language.specify}</label><input style="max-width: 60%; margin-left: 16px;" type="text" id="found-us-specify" name="Found us (specify)"/>
+            </p>
+            <p>
+                <label for="message">{language.message}</label>
+                <textarea id="message" name="Message" style="width: 100%;"></textarea>
+            </p>
+
+            <button type="submit" style="margin:60px auto; display: block; min-width: 40%;">{language.submit}</button>
+
+        </form>
+    </div>
+
+</div>

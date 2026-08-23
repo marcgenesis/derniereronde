@@ -1,0 +1,177 @@
+@import url('https://fonts.googleapis.com/css2?family=Cabin:ital,wght@0,400..700;1,400..700&family=Gelasio:ital,wght@0,400..700;1,400..700&family=Merriweather:ital,opsz,wght@0,18..144,300..900;1,18..144,300..900&display=swap');
+/*------------
+
+INFORMATION
+
+ desktop width 768px
+
+
+.cabin-<uniquifier> {
+  font-family: "Cabin", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: <weight>;
+  font-style: normal;
+  font-variation-settings:
+    "wdth" 100;
+}
+
+.gelasio-<uniquifier> {
+  font-family: "Gelasio", serif;
+  font-optical-sizing: auto;
+  font-weight: <weight>;
+  font-style: normal;
+}
+
+
+.merriweather-<uniquifier> {
+  font-family: "Merriweather", serif;
+  font-optical-sizing: auto;
+  font-weight: <weight>;
+  font-style: normal;
+  font-variation-settings:
+    "wdth" 100;
+}
+
+
+------------*/
+
+/*------------
+
+VARIABLES
+
+------------*/
+
+:root {
+    --color-dark-primary: #262626;
+    --color-dark-secondary: #000000;
+    --text-color-primary: #F2F2F2;
+    --text-color-secondary: #FFFFFF;
+    --link-color: #F347FF;
+    --link-color-hover: #DB5CD5;
+    --link-color-visited: var(--link-color);
+    --desktop-width: 636px;
+}
+
+
+/*------------
+
+GLOBAL
+
+------------*/
+
+body {
+    background-color: var(--color-dark-primary);
+    color: var(--text-color-primary);
+    font-family: "Gelasio", serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+    font-size: clamp(1rem, 0.5rem + 2vw, 1.5rem);
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: "Merriweather", serif;
+    font-optical-sizing: auto;
+    font-weight: 300;
+    font-style: normal;
+    font-variation-settings:
+        "wdth" 100;
+    margin: 20px 0;
+}
+
+a {
+    color: var(--link-color);
+}
+
+a:hover {
+    color: var(--link-color-hover);
+    text-decoration: underline;
+}
+
+a:visited {
+    color: var(--link-color);
+}
+
+p {
+    margin: 0 0 1em 0;
+}
+
+/*------------
+
+FINE-GRAINED
+
+------------*/
+
+.inner-content {
+    max-width: 1200px;
+    padding: 12px;
+}
+
+.container-center {
+    margin: 0 auto;
+}
+
+.absolute-top {
+    position: absolute;
+    top: 0;
+}
+
+.flex {
+    display: flex;
+}
+
+.flex-end {
+    justify-content: flex-end;
+}
+
+.flex-center {
+    justify-content: center;
+}
+
+.flex-gap-20 {
+    gap: 20px;
+}
+
+.flex-gap-40 {
+    gap: 40px;
+}
+
+.flex-grow {
+    flex-grow: 1;
+}
+
+.flex-shrink {
+    flex-shrink: 1;
+}
+
+.flex-static {
+    flex-grow: 0;
+}
+
+.flex-align-center {
+    align-self: center;
+}
+
+.flex-align-items-center {
+    align-items: center;
+}
+
+.flex-column {
+    flex-direction: column;
+}
+
+.flex-wrap {
+    flex-wrap: wrap;
+}
+
+.height-full {
+    min-height: 100vh;
+}
+
+.text-align-center {
+    text-align: center;
+}
+
+.width-full {
+    width: 100%;
+}
