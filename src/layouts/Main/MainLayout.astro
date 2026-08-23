@@ -12,7 +12,8 @@ import '../../styles/global.css';
 // Language
 import en from "./en.json";
 import fr from "./fr.json";
-const language = Astro.currentLocale == "fr" ? fr : en;
+//const language = Astro.currentLocale == "fr" ? fr : en;
+const language = fr;
 const htmlLang = Astro.currentLocale == "fr" ? "fr" : "en";
 
 const { pageTitle, menuMode } = Astro.props;
