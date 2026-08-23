@@ -5,11 +5,9 @@ import en from "./en.json"
 import fr from "./fr.json"
 const language = Astro.currentLocale == "fr" ? fr : en
 
-
 const homepageLocale = Astro.currentLocale == "fr" ? "": "en";
 
 const currentPath = Astro.url.pathname.replace("/en", "");
-
 
 const languageSwitchURL = Astro.currentLocale == "fr"
     ? Astro.url.origin + "/en" + currentPath
