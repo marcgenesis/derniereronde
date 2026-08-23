@@ -246,7 +246,7 @@ import { nonnegative } from "astro:schema";
             <p>
                 <label for="found-us">{language.foundUs}</label>
                 <select id="found-us" name="How did you hear from us?">
-                    <option value=""></option>
+                    <option value="NotAnswered"></option>
                     <option value="Client">{language.client}</option>
                     <option value="Reference">{language.reference}</option>
                     <option value="SocialMedia">{language.socialMedia}</option>
@@ -255,7 +255,7 @@ import { nonnegative } from "astro:schema";
                 </select>
             </p>
             <p id="found-us-specify-section">
-                <label style="display: inline;" for="found-us-specify">{language.specify}</label><input style="max-width: 60%; margin-left: 16px;" type="text" id="found-us-specify" name="Found us (specify)"/>
+                <label style="display: inline;" for="found-us-specify">{language.specify}</label><input style="max-width: 60%; margin-left: 16px;" type="text" id="found-us-specify" name="Found us (specify)" value={language.specify}/>
             </p>
             <p>
                 <label for="message">{language.message}</label>
