@@ -12,14 +12,12 @@ import '../../styles/global.css';
 // Language
 import en from "./en.json";
 import fr from "./fr.json";
-const language = fr;
-const htmlLang = Astro.currentLocale == "fr" ? "fr" : "en";
 
+const language = Astro.currentLocale == "fr" ? fr : en;
 const { pageTitle, menuMode } = Astro.props;
 ---
 
-
-<html lang={htmlLang}>
+<html lang={Astro.currentLocale}>
 	<head>
 		<meta charset="utf-8" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
