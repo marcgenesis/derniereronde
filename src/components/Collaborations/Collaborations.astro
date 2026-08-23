@@ -9,7 +9,7 @@ const language = Astro.currentLocale == "fr" ? fr : en
 const { frontmatter } = Astro.props;
 const { slug } = Astro.params;
 
-const matches = fg.sync("./src/collaborations/files/" + slug + "/*", { objectMode: true, stats: true });
+const matches = fg.sync("public/collaborations/files/" + slug + "/*", { objectMode: true, stats: true });
 matches.sort((a, b) => parseFloat(b.stats.mtimeMs) - parseFloat(a.stats.mtimeMs));
 
 
@@ -55,7 +55,7 @@ matches.sort((a, b) => parseFloat(b.stats.mtimeMs) - parseFloat(a.stats.mtimeMs)
 </div>
 <div class="collaborations inner-content container-center flex flex-gap-20 flex-wrap flex-center">
     {matches.map((collab) => {return collab.name.includes(".")
-            ? <div data-lightbox="true"><img src={collab.path.substring(1)} alt=`Collaboration - ${frontmatter.clientName}` /></div>
+            ? <div data-lightbox="true"><img src={collab.path.substring(6)} alt=`Collaboration - ${frontmatter.clientName}` /></div>
             : <YouTube id={collab.name.substring(0, collab.name.indexOf("+"))} posterQuality="max" title={collab.name.substring(collab.name.indexOf("+") + 1)} />}
             )}
 </div>
