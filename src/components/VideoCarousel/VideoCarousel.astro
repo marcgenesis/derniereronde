@@ -1,0 +1,71 @@
+---
+import { YouTube } from 'astro-embed';
+import fg from 'fast-glob';
+
+import { Swiper, SwiperWrapper, SwiperSlide, SwiperButtonPrev, SwiperButtonNext } from "astro-swiper";
+import type { AstroSwiperType } from "astro-swiper";
+
+const astroSwiperOptions: AstroSwiperType = {
+    options: {
+        loop: true,
+        navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+        },
+    },
+};
+
+const matches = fg.sync("public/collaborations/files/**", { objectMode: true, stats: true });
+matches.sort((a, b) => parseFloat(b.stats.mtimeMs) - parseFloat(a.stats.mtimeMs));
+
+
+---
+<style>
+    #portfolio {
+        padding-top: 100px;
+        margin-bottom: 100px;
+    }
+
+    lite-youtube {
+        margin: 0 auto;
+        min-width: 80%;
+    }
+</style>
+
+<script define:vars={{ matches }}>
+    console.log(matches);
+</script>
+
+<Swiper id="portfolio" options={astroSwiperOptions.options} class="not-content inner-content container-center">
+    <SwiperWrapper>
+
+        {matches.map((file) => {return file.name.includes(".")
+            ? ""
+            : file.name.includes("short")
+                ? ""
+                : <SwiperSlide><YouTube id={file.name.substring(0, file.name.includes("+") ? file.name.indexOf("+") : file.name.length)} posterQuality="max" /></SwiperSlide>
+        })}
+
+    </SwiperWrapper>
+
+    <SwiperButtonPrev />
+    <SwiperButtonNext />
+</Swiper>
+
+<!--
+<Carousel opts={{ align: "start", loop: true }} class="mx-auto w-full max-w-xs inner-content container-center">
+  <CarouselContent>
+    <CarouselItem>
+        <YouTube id="l80a75C9BNA" posterQuality="max" />
+    </CarouselItem>
+    <CarouselItem>
+      <YouTube id="l80a75C9BNA" posterQuality="max" />
+    </CarouselItem>
+    <CarouselItem>
+      <YouTube id="l80a75C9BNA" posterQuality="max" />
+    </CarouselItem>
+  </CarouselContent>
+  <CarouselPrevious />
+  <CarouselNext />
+</Carousel>
+ -->

@@ -50,6 +50,7 @@ VARIABLES
     --link-color-hover: #DB5CD5;
     --link-color-visited: var(--link-color);
     --desktop-width: 636px;
+    --swiper-theme-color: var(--link-color) !important;
 }
 
 
