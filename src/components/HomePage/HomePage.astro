@@ -5,6 +5,7 @@ import Welcome from "../Welcome/Welcome.astro";
 import CollaborationsGallery from "../CollaborationsGallery/CollaborationsGallery.astro";
 import WhyUs from "../WhyUs/WhyUs.astro";
 import Quote from "../Quote/Quote.astro";
+import VideoCarousel from "../VideoCarousel/VideoCarousel.astro";
 
 import en from "./en.json"
 import fr from "./fr.json"
@@ -25,6 +26,7 @@ const language = Astro.currentLocale == "fr" ? fr : en
 <VideoBanner />
 <Welcome />
 <WhyUs />
+<VideoCarousel />
 <CollaborationsGallery />
 <div id="action">
     {language.action}
