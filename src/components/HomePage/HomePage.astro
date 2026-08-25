@@ -6,9 +6,27 @@ import CollaborationsGallery from "../CollaborationsGallery/CollaborationsGaller
 import WhyUs from "../WhyUs/WhyUs.astro";
 import Quote from "../Quote/Quote.astro";
 
+import en from "./en.json"
+import fr from "./fr.json"
+const language = Astro.currentLocale == "fr" ? fr : en
 ---
+<style>
+    #action {
+        font-family: "Cabin", sans-serif;
+        font-size: 2em;
+        flex-grow: 0;
+        min-width: 40%;
+        height: 100%;
+        margin: 180px 0;
+        text-align: center;
+    }
+</style>
+
 <VideoBanner />
 <Welcome />
 <WhyUs />
 <CollaborationsGallery />
+<div id="action">
+    {language.action}
+</div>
 <Quote />
