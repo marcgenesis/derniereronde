@@ -30,6 +30,7 @@
     "videoLengthMinutes": "minutes",
     "videoLengthSeconds": "seconds",
     "videoFormats": "Video formats required",
+    "videoNumLanguages": "Number of languages required",
     "photography": "Photography",
     "photographyService": "Would you like pictures?",
     "pictureAmount": "Number of pictures required",

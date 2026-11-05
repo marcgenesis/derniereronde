@@ -210,6 +210,10 @@ import { nonnegative } from "astro:schema";
                     <label style="display: inline;" for="cinematography-landscape">{language.landscape}</label><input style="max-width: 10%;" id="cinematography-landscape" name="Cinematography landscape format" type="checkbox" />
                     <label style="display: inline;" for="cinematography-portrait">{language.portrait}</label><input style="max-width: 10%;" id="cinematography-portrait" name="Cinematography portrait format" type="checkbox" />
                 </p>
+                <p>
+                    <label for="number-of-languages">{language.videoNumLanguages}</label>
+                    <input style="width: 20%;" type="text" inputmode="numeric" pattern="\d*" id="video-language-amount" name="Video language amount" value="1" />
+                </p>
             </fieldset>
 
 
