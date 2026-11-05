@@ -7,7 +7,7 @@ const language = Astro.currentLocale == "fr" ? fr : en
 import { getCollection, render } from 'astro:content';
 
 const collabs = await getCollection('collaborations');
-collabs.sort((a, b) => parseFloat(b.id) - parseFloat(a.id));
+//collabs.sort((a, b) => parseFloat(a.id) - parseFloat(b.id));
 ---
 <style>
     .client {

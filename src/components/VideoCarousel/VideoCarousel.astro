@@ -15,7 +15,7 @@ const astroSwiperOptions: AstroSwiperType = {
     },
 };
 
-const matches = fg.sync("public/collaborations/files/**", { objectMode: true, stats: true });
+const matches = fg.sync("public/carousel/**", { objectMode: true, stats: true });
 matches.sort((a, b) => parseFloat(b.stats.mtimeMs) - parseFloat(a.stats.mtimeMs));
 
 
