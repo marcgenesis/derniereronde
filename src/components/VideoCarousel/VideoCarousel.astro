@@ -32,10 +32,6 @@ matches.sort((a, b) => parseFloat(b.stats.mtimeMs) - parseFloat(a.stats.mtimeMs)
     }
 </style>
 
-<script define:vars={{ matches }}>
-    console.log(matches);
-</script>
-
 <Swiper id="portfolio" options={astroSwiperOptions.options} class="not-content inner-content container-center">
     <SwiperWrapper>
 
