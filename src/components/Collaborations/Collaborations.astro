@@ -10,8 +10,8 @@ const { frontmatter } = Astro.props;
 const { slug } = Astro.params;
 
 const matches = fg.sync("public/collaborations/files/" + slug + "/*", { objectMode: true, stats: true });
-matches.sort((a, b) => parseFloat(b.stats.mtimeMs) - parseFloat(a.stats.mtimeMs));
-
+//matches.sort((a, b) => parseFloat(b.stats.mtimeMs) - parseFloat(a.stats.mtimeMs));
+matches.sort(() => Math.random() - 0.5)
 
 ---
 <style>

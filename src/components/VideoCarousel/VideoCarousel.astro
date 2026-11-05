@@ -16,7 +16,9 @@ const astroSwiperOptions: AstroSwiperType = {
 };
 
 const matches = fg.sync("public/carousel/**", { objectMode: true, stats: true });
-matches.sort((a, b) => parseFloat(b.stats.mtimeMs) - parseFloat(a.stats.mtimeMs));
+/*matches.sort(function(a, b) {
+    return parseFloat(b.stats.mtimeMs) - parseFloat(a.stats.mtimeMs)
+});*/
 
 
 ---
@@ -39,7 +41,7 @@ matches.sort((a, b) => parseFloat(b.stats.mtimeMs) - parseFloat(a.stats.mtimeMs)
             ? ""
             : file.name.includes("short")
                 ? ""
-                : <SwiperSlide><YouTube id={file.name.substring(0, file.name.includes("+") ? file.name.indexOf("+") : file.name.length)} posterQuality="max" /></SwiperSlide>
+                : <SwiperSlide><YouTube id={file.name.substring(4, file.name.includes("+") ? file.name.indexOf("+") : file.name.length)} posterQuality="max" /></SwiperSlide>
         })}
 
     </SwiperWrapper>
